@@ -5,7 +5,7 @@
 ## A Map to Success
 ### Functional Programming for Database Developers
 
-<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)
+<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
 <a href="https://csmore.info/on/fp">https://CSmore.info/on/fp</a>
 
 ---
@@ -56,7 +56,6 @@ Key features of functional programming languages include:
 1. Functions and Data, Data and Functions
 2. Immutability
 3. Expressions
-3a. Lambda Expressions
 4. Functions are higher-order
 
 ---?image=presentation/assets/background/lego-instructions.jpg&size=cover&opacity=20
