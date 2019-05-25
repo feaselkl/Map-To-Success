@@ -15,3 +15,4 @@ published : true
 footnote : "A Map to Success | https://csmore.info/on/fp"
 mathjax : TeX-MML-AM_HTMLorMML-full
 code-line-numbers : true
+eager-loading : true
