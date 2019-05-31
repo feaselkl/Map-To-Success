@@ -12,7 +12,7 @@ IF NOT EXISTS
 		T.name = N'DelayByStateType'
 )
 BEGIN
-	CREATE TYPE dbo.DelayByState AS TABLE
+	CREATE TYPE dbo.DelayByStateType AS TABLE
 	(
 		DestinationState VARCHAR(2) NOT NULL,
 		NumberOfFlights INT NOT NULL,
