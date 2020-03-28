@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.6" Build="14.0.1000.169" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="500" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="GoodEnoughPlanFound" CardinalityEstimationModelVersion="130" StatementSubTreeCost="0.0727139" StatementText="SELECT TOP(500)&#xD;&#xA;	i.BeatID,&#xD;&#xA;	i.IncidentCode,&#xD;&#xA;	ic.IncidentDescription,&#xD;&#xA;	it.IncidentType,&#xD;&#xA;	i.IncidentDate,&#xD;&#xA;	i.IncidentNumber&#xD;&#xA;FROM Raleigh2014.Incident i&#xD;&#xA;	INNER JOIN Raleigh2014.IncidentCode ic&#xD;&#xA;		ON i.IncidentCode = ic.IncidentCode&#xD;&#xA;	INNER JOIN Raleigh2014.IncidentType it&#xD;&#xA;		ON ic.IncidentTypeID = it.IncidentTypeID" StatementType="SELECT" QueryHash="0x2ECFACC8CAC7BCD0" QueryPlanHash="0xEF26B9BEF563F2A7" RetrievedFromCache="true" SecurityPolicyApplied="false">
+          <StatementSetOptions ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="true" />
+          <QueryPlan DegreeOfParallelism="1" MemoryGrant="2256" CachedPlanSize="80" CompileTime="88" CompileCPU="41" CompileMemory="408">
+            <MissingIndexes>
+              <MissingIndexGroup Impact="44.0933">
+                <MissingIndex Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]">
+                  <ColumnGroup Usage="EQUALITY">
+                    <Column Name="[IncidentCode]" ColumnId="2" />
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INCLUDE">
+                    <Column Name="[IncidentDate]" ColumnId="3" />
+                    <Column Name="[BeatID]" ColumnId="4" />
+                    <Column Name="[IncidentNumber]" ColumnId="5" />
+                  </ColumnGroup>
+                </MissingIndex>
+              </MissingIndexGroup>
+            </MissingIndexes>
+            <MemoryGrantInfo SerialRequiredMemory="2048" SerialDesiredMemory="2256" RequiredMemory="2048" DesiredMemory="2256" RequestedMemory="2256" GrantWaitTime="0" GrantedMemory="2256" MaxUsedMemory="640" MaxQueryMemory="879248" />
+            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="417021" EstimatedPagesCached="104255" EstimatedAvailableDegreeOfParallelism="2" MaxCompileMemory="3438512" />
+            <OptimizerStatsUsage>
+              <StatisticsInfo Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Statistics="[_WA_Sys_00000003_3B75D760]" ModificationCount="316" SamplingPercent="100" LastUpdate="2017-04-15T09:46:51.35" />
+              <StatisticsInfo Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Statistics="[_WA_Sys_00000002_59063A47]" ModificationCount="0" SamplingPercent="50.4959" LastUpdate="2017-04-16T10:35:44.35" />
+              <StatisticsInfo Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Statistics="[PK_IncidentCode]" ModificationCount="0" SamplingPercent="100" LastUpdate="2017-04-15T09:45:20.13" />
+              <StatisticsInfo Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Statistics="[PK_IncidentType]" ModificationCount="0" SamplingPercent="100" LastUpdate="2017-04-15T09:46:51.39" />
+            </OptimizerStatsUsage>
+            <WaitStats>
+              <Wait WaitType="MEMORY_ALLOCATION_EXT" WaitTimeMs="10" WaitCount="1468" />
+              <Wait WaitType="SOS_SCHEDULER_YIELD" WaitTimeMs="19" WaitCount="5" />
+              <Wait WaitType="PAGEIOLATCH_SH" WaitTimeMs="43" WaitCount="5" />
+              <Wait WaitType="ASYNC_NETWORK_IO" WaitTimeMs="248" WaitCount="2" />
+            </WaitStats>
+            <QueryTimeStats CpuTime="105" ElapsedTime="374" />
+            <RelOp AvgRowSize="94" EstimateCPU="5E-05" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="500" LogicalOp="Top" NodeId="0" Parallel="false" PhysicalOp="Top" EstimatedTotalSubtreeCost="0.0727139">
+              <OutputList>
+                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentDate" />
+                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="BeatID" />
+                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentNumber" />
+                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentDescription" />
+                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentType" />
+              </OutputList>
+              <RunTimeInformation>
+                <RunTimeCountersPerThread Thread="0" ActualRows="500" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="99" ActualCPUms="78" />
+              </RunTimeInformation>
+              <Top RowCount="false" IsPercent="false" WithTies="false">
+                <TopExpression>
+                  <ScalarOperator ScalarString="(500)">
+                    <Const ConstValue="(500)" />
+                  </ScalarOperator>
+                </TopExpression>
+                <RelOp AvgRowSize="94" EstimateCPU="2.69048" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="500" LogicalOp="Inner Join" NodeId="1" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="0.0726639">
+                  <OutputList>
+                    <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                    <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentDate" />
+                    <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="BeatID" />
+                    <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentNumber" />
+                    <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentDescription" />
+                    <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentType" />
+                  </OutputList>
+                  <MemoryFractions Input="0.230769" Output="0.230769" />
+                  <RunTimeInformation>
+                    <RunTimeCountersPerThread Thread="0" ActualRows="500" Batches="0" ActualEndOfScans="0" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="99" ActualCPUms="78" ActualScans="0" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" InputMemoryGrant="1072" OutputMemoryGrant="1072" UsedMemoryGrant="320" />
+                  </RunTimeInformation>
+                  <Hash>
+                    <DefinedValues />
+                    <HashKeysBuild>
+                      <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentTypeID" />
+                    </HashKeysBuild>
+                    <HashKeysProbe>
+                      <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentTypeID" />
+                    </HashKeysProbe>
+                    <ProbeResidual>
+                      <ScalarOperator ScalarString="[OutlierDetection].[Raleigh2014].[IncidentType].[IncidentTypeID] as [it].[IncidentTypeID]=[OutlierDetection].[Raleigh2014].[IncidentCode].[IncidentTypeID] as [ic].[IncidentTypeID]">
+                        <Compare CompareOp="EQ">
+                          <ScalarOperator>
+                            <Identifier>
+                              <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentTypeID" />
+                            </Identifier>
+                          </ScalarOperator>
+                          <ScalarOperator>
+                            <Identifier>
+                              <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentTypeID" />
+                            </Identifier>
+                          </ScalarOperator>
+                        </Compare>
+                      </ScalarOperator>
+                    </ProbeResidual>
+                    <RelOp AvgRowSize="42" EstimateCPU="0.0002087" EstimateIO="0.003125" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="47" EstimatedRowsRead="47" LogicalOp="Index Scan" NodeId="2" Parallel="false" PhysicalOp="Index Scan" EstimatedTotalSubtreeCost="0.0033337" TableCardinality="47">
+                      <OutputList>
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentTypeID" />
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentType" />
+                      </OutputList>
+                      <RunTimeInformation>
+                        <RunTimeCountersPerThread Thread="0" ActualRows="47" ActualRowsRead="47" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="5" ActualCPUms="0" ActualScans="1" ActualLogicalReads="2" ActualPhysicalReads="1" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                      </RunTimeInformation>
+                      <IndexScan Ordered="false" ForcedIndex="false" ForceSeek="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                        <DefinedValues>
+                          <DefinedValue>
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentTypeID" />
+                          </DefinedValue>
+                          <DefinedValue>
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Alias="[it]" Column="IncidentType" />
+                          </DefinedValue>
+                        </DefinedValues>
+                        <Object Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentType]" Index="[UKC_IncidentType]" Alias="[it]" IndexKind="NonClustered" Storage="RowStore" />
+                      </IndexScan>
+                    </RelOp>
+                    <RelOp AvgRowSize="69" EstimateCPU="3.11337" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="500" LogicalOp="Inner Join" NodeId="3" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="0.046224">
+                      <OutputList>
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentDate" />
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="BeatID" />
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentNumber" />
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentDescription" />
+                        <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentTypeID" />
+                      </OutputList>
+                      <MemoryFractions Input="0.769231" Output="0.769231" />
+                      <RunTimeInformation>
+                        <RunTimeCountersPerThread Thread="0" ActualRows="500" Batches="0" ActualEndOfScans="0" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="92" ActualCPUms="77" ActualScans="0" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" InputMemoryGrant="1184" OutputMemoryGrant="1184" UsedMemoryGrant="320" />
+                      </RunTimeInformation>
+                      <Hash>
+                        <DefinedValues />
+                        <HashKeysBuild>
+                          <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentCode" />
+                        </HashKeysBuild>
+                        <HashKeysProbe>
+                          <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                        </HashKeysProbe>
+                        <ProbeResidual>
+                          <ScalarOperator ScalarString="[OutlierDetection].[Raleigh2014].[IncidentCode].[IncidentCode] as [ic].[IncidentCode]=[OutlierDetection].[Raleigh2014].[Incident].[IncidentCode] as [i].[IncidentCode]">
+                            <Compare CompareOp="EQ">
+                              <ScalarOperator>
+                                <Identifier>
+                                  <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentCode" />
+                                </Identifier>
+                              </ScalarOperator>
+                              <ScalarOperator>
+                                <Identifier>
+                                  <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                                </Identifier>
+                              </ScalarOperator>
+                            </Compare>
+                          </ScalarOperator>
+                        </ProbeResidual>
+                        <RelOp AvgRowSize="47" EstimateCPU="0.0005046" EstimateIO="0.00608796" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="316" EstimatedRowsRead="316" LogicalOp="Clustered Index Scan" NodeId="4" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="0.00659256" TableCardinality="316">
+                          <OutputList>
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentCode" />
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentDescription" />
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentTypeID" />
+                          </OutputList>
+                          <RunTimeInformation>
+                            <RunTimeCountersPerThread Thread="0" ActualRows="316" ActualRowsRead="316" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="1" ActualCPUms="0" ActualScans="1" ActualLogicalReads="7" ActualPhysicalReads="1" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                          </RunTimeInformation>
+                          <IndexScan Ordered="false" ForcedIndex="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                            <DefinedValues>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentCode" />
+                              </DefinedValue>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentDescription" />
+                              </DefinedValue>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Alias="[ic]" Column="IncidentTypeID" />
+                              </DefinedValue>
+                            </DefinedValues>
+                            <Object Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[IncidentCode]" Index="[PK_IncidentCode]" Alias="[ic]" IndexKind="Clustered" Storage="RowStore" />
+                          </IndexScan>
+                        </RelOp>
+                        <RelOp AvgRowSize="36" EstimateCPU="0.454808" EstimateIO="1.65201" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="590.303" EstimatedRowsRead="413319" LogicalOp="Clustered Index Scan" NodeId="5" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="0.0062823" TableCardinality="413319">
+                          <OutputList>
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentDate" />
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="BeatID" />
+                            <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentNumber" />
+                          </OutputList>
+                          <RunTimeInformation>
+                            <RunTimeCountersPerThread Thread="0" ActualRows="500" ActualRowsRead="500" Batches="0" ActualEndOfScans="0" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="89" ActualCPUms="75" ActualScans="1" ActualLogicalReads="13" ActualPhysicalReads="2" ActualReadAheads="1379" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                          </RunTimeInformation>
+                          <IndexScan Ordered="false" ForcedIndex="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                            <DefinedValues>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentCode" />
+                              </DefinedValue>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentDate" />
+                              </DefinedValue>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="BeatID" />
+                              </DefinedValue>
+                              <DefinedValue>
+                                <ColumnReference Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Alias="[i]" Column="IncidentNumber" />
+                              </DefinedValue>
+                            </DefinedValues>
+                            <Object Database="[OutlierDetection]" Schema="[Raleigh2014]" Table="[Incident]" Index="[PK_Incident]" Alias="[i]" IndexKind="Clustered" Storage="RowStore" />
+                          </IndexScan>
+                        </RelOp>
+                      </Hash>
+                    </RelOp>
+                  </Hash>
+                </RelOp>
+              </Top>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>
