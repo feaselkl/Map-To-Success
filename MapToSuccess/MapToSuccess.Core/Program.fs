@@ -1,6 +1,7 @@
 ﻿module MapToSuccess.Console
 
 open System
+open System.Runtime.InteropServices
 
 // Function call for option 1.
 let findMovieSales title =
@@ -77,6 +78,11 @@ let printDescriptiveStatistics x =
 let analyzeWaitStats fileName =
     MapToSuccess.WaitStats.analyzeWaitStats fileName
 
+let tryAnalyzeWaitStats fileName =
+    match RuntimeInformation.IsOSPlatform(OSPlatform.Windows) with
+    | true -> analyzeWaitStats fileName
+    | false -> printfn "This function call will not run in a Docker container running Linux."
+
 // Function call for option 9.
 let viewWindows fileName =
     MapToSuccess.WaitStats.viewWindows fileName
@@ -93,7 +99,7 @@ This is an F# demonstration.  Select one of the following options to demonstrate
      5)  F# SQL type provider:  using a stored procedure.
      6)  F# SQL type provider:  writing to a table using a TVP and a stored procedure.
      7)  Generate descriptive statistics for a data set.
-     8)  Graph wait stats data with FSharp.Charting.
+     8)  Graph wait stats data with FSharp.Charting.  ONLY ON WINDOWS!
      9)  View windows of data and calculate moving averages.
     10)  Build a fractal tree.  ONLY AVAILABLE WHEN RUNNING THE .NET FRAMEWORK VERSION!
      q)  Exit this application."
@@ -111,7 +117,7 @@ This is an F# demonstration.  Select one of the following options to demonstrate
     | "5" -> printAirportDetailsSP "CMH"
     | "6" -> writeToSqlWithTvp (); printfn "Check the dbo.DelayByState table for results."
     | "7" -> printDescriptiveStatistics (genRandomNumbers 50 70.)
-    | "8" -> analyzeWaitStats "WaitStats.csv" |> ignore
+    | "8" -> tryAnalyzeWaitStats "WaitStats.csv" |> ignore
     | "9" -> viewWindows "WaitStats.csv" |> ignore
     | "10" -> printfn "You are running the .NET Core version of this.  The Fractal Tree requires Windows-specific libraries which are not part of .NET Core, so I have removed this example.  If you wish to see it in action, open the MapToSuccess project and run it instead, as it is .NET Framework-based."
     | "q" -> ()

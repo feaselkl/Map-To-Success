@@ -1,8 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="fsc.props" />
+  
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	<DisableAutoSetFscCompilerPath>true</DisableAutoSetFscCompilerPath>
+	<DotNetFscCompilerPath></DotNetFscCompilerPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,5 +48,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="XPlot.Plotly" Version="3.0.1" />
   </ItemGroup>
-
 </Project>
