@@ -99,7 +99,7 @@ This is an F# demonstration.  Select one of the following options to demonstrate
      5)  F# SQL type provider:  using a stored procedure.
      6)  F# SQL type provider:  writing to a table using a TVP and a stored procedure.
      7)  Generate descriptive statistics for a data set.
-     8)  Graph wait stats data with FSharp.Charting.  ONLY ON WINDOWS!
+     8)  Graph wait stats data with XPlot.Plotly.  ONLY ON WINDOWS!
      9)  View windows of data and calculate moving averages.
     10)  Build a fractal tree.  ONLY AVAILABLE WHEN RUNNING THE .NET FRAMEWORK VERSION!
      q)  Exit this application."

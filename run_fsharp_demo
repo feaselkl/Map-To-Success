@@ -1,0 +1,8 @@
+cd ~
+git clone https://github.com/feaselkl/Map-To-Success
+
+cd ~/Map-To-Success/MapToSuccess/MapToSuccess.Core/
+dotnet restore --packages ./packages
+
+dotnet build
+dotnet run
