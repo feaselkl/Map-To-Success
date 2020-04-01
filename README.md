@@ -1,5 +1,7 @@
 # A Map to Success
 
+This repository provides the supporting code for my presentation entitled [A Map to Success:  Functional Programming for Database Developers](https://www.catallaxyservices.com/presentations/maptosuccess/).
+
 ## Important Notes!
 
 1. If you run the Docker version of this code, you will not be able to run demo 8, which uses a charting library to display charts.
