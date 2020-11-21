@@ -12,30 +12,26 @@
 
 @title[Who Am I?]
 
-@div[left-60]
+[drag=60 100, drop=0 0]
 <table>
-	<tr>
-		<td><a href="https://csmore.info"><img src="https://www.catallaxyservices.com/media/Logo.png" height="133" width="119" /></a></td>
-		<td><a href="https://csmore.info">Catallaxy Services</a></td>
-	</tr>
-	<tr>
-		<td><a href="https://curatedsql.com"><img src="https://www.catallaxyservices.com/media/CuratedSQLLogo.png" height="133" width="119" /></a></td>
-		<td><a href="https://curatedsql.com">Curated SQL</a></td>
-	</tr>
-	<tr>
-		<td><a href="https://www.apress.com/us/book/9781484254608"><img src="https://www.catallaxyservices.com/media/PolyBaseRevealed.png" height="153" width="107" /></a></td>
-		<td><a href="https://www.apress.com/us/book/9781484254608">PolyBase Revealed</a></td>
-	</tr>
+<tr>
+<td><a href="https://csmore.info"><img src="https://www.catallaxyservices.com/media/Logo.png" height="133" width="119" /></a></td>
+<td><a href="https://csmore.info">Catallaxy Services</a></td>
+</tr>
+<tr>
+<td><a href="https://curatedsql.com"><img src="https://www.catallaxyservices.com/media/CuratedSQLLogo.png" height="133" width="119" /></a></td>
+<td><a href="https://curatedsql.com">Curated SQL</a></td>
+</tr>
+<tr>
+<td><a href="https://www.apress.com/us/book/9781484254608"><img src="https://www.catallaxyservices.com/media/PolyBaseRevealed.png" height="153" width="107" /></a></td>
+<td><a href="https://www.apress.com/us/book/9781484254608">PolyBase Revealed</a></td>
+</tr>
 </table>
-@divend
 
-@div[right-40]
-	<br /><br />
-	<a href="https://www.twitter.com/feaselkl"><img src="https://www.catallaxyservices.com/media/HeadShot.jpg" height="358" width="315" /></a>
-	<br />
-	<a href="https://www.twitter.com/feaselkl">@feaselkl</a>
-</div>
-@divend
+[drag=40 100, drop=60 0]
+![Kevin Feasel](https://www.catallaxyservices.com/media/HeadShot.jpg)
+
+[@feaselkl](https://www.twitter.com/feaselkl)
 
 ---
 
@@ -163,26 +159,42 @@ val rdd = lines.map(x => x.toString().split(",")(3))
 
 ---?image=presentation/assets/background/philosophy.jpg&size=cover&opacity=20
 
+[drag= 100 30, drop=0 0]
 ### Why Go Functional?
 
 Reasons to learn about functional programming include: 
+
+@ul[list-fade-bullets, drag=60 80, drop=bottom]
 * Key data science and Big Data languages are functional.
 * Functional programming can earn you more money.
 * Database developers will have an easier time learning it than OO languages.
+@ul
 
 ---?image=presentation/assets/background/library.jpg&size=cover&opacity=20
 
+[drag=100 30, drop=0 0]
 ### Data Science and Big Data Languages
 
+[drag=30 40, drop=left]
 Data science:
+@ul
 * R
 * Julia (sort of)
+@ul
 
+[drag=35 40, drop=middle]
 Big Data:
+@ul
 * Scala
+@ghost
+@ul
 
+[drag=40 40, drop=right]
 Key concepts:
+@ul
 * MapReduce
+@ghost
+@ul
 
 ---
 
@@ -197,16 +209,20 @@ Key concepts:
 
 Database developers have a leg up on thinking functionally:
 
+@ul[list-fade-bullets]
 * We think in terms of sets and set operations.
 * We think in terms of data and operations on data.
 * We think in terms of declarative operations instead of imperative step-by-step operations.
 * Functional programming makes it easier to avoid the object-relational impedence mismatch problem.
+@ul
 
 ---?image=presentation/assets/background/businessdecision.jpg&size=cover&opacity=20
 
 ### What if I'm a C# / Java Dev?
 
-Functional programming still helps people who work in C# and Java all day.  We have seen more and more functional programming concepts make their way into these languages, especially C#.  LINQ, lambda expressions, async and Task<>, Func<>, non-nullable object types, record types, and more have made their way into C# (or will be there with C# 8).
+Functional programming still helps people who work in C# and Java all day.
+
+We have seen more and more functional programming concepts make their way into these languages, especially C#.  LINQ, lambda expressions, async and Task<>, Func<>, non-nullable object types, record types, and more have made their way into C# (or will be there with C# 8).
 
 ---
 
@@ -241,7 +257,20 @@ Functional programming has its own mindset which can take time getting used to, 
 ---
 
 ### Wrapping Up
-
-To learn more, go here:  <a href="https://csmore.info/on/fp">https://CSmore.info/on/fp</a>
-
-And for help, contact me:  <a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+<p>
+	To learn more, go here:
+	<br />
+	<a href="https://csmore.info/on/fp">https://CSmore.info/on/fp</a>
+</p>
+<br />
+<p>
+	And for help, contact me:
+	<br />
+	<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+</p>
+<br />
+<p>
+	Catallaxy Services consulting:
+	<br />
+	<a href="https://csmore.info/contact">https://CSmore.info/on/contact</a>
+</p>
