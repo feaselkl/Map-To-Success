@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Catallaxy Services | A Map to Success</title>
+
+		<link rel="stylesheet" href="../reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="../WebsiteAssets/mods.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h2>A Map to Success</h2>
+					<h3>Functional Programming for Database Developers</h3>
+					
+					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
+					<a href="https://csmore.info/on/fp">https://csmore.info/on/fp</a>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Who Am I?  What Am I Doing Here?</h3>
+					<div class="container">
+						<div class="col">
+							<table class="whoami">
+								<tr>
+									<td><a href="https://csmore.info"><img src="../WebsiteAssets/Logo.png" height="100" /></a></td>
+									<td nowrap><a href="https://csmore.info">Catallaxy Services</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://curatedsql.com"><img src="../WebsiteAssets/CuratedSQLLogo.png" height="100" /></a></td>
+									<td nowrap><a href="https://curatedsql.com">Curated SQL</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://www.apress.com/us/book/9781484254608"><img src="../WebsiteAssets/PolyBaseRevealed.png" height="120" /></a></td>
+									<td nowrap><a href="https://www.apress.com/us/book/9781484254608">PolyBase Revealed</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col">
+							<a href="http://www.twitter.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
+							<br />
+							<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li class="active">What is Functional Programming?</li>
+						<li>Why Go Functional?</li>
+						<li>Demos Galore</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/questions.jpg" data-background-opacity="0.2">
+					<h3>What is Functional Programming?</h3>
+					
+					<ol>
+						<li>Functions and Data, Data and Functions</li>
+						<li>Immutability</li>
+						<li>Expressions</li>
+						<li>Functions are higher-order</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/lego-instructions.jpg" data-background-opacity="0.2">
+					<h3>Functions and Data</h3>
+					
+					<p>Functional programming is all about data and the functions we use to transform that data.</p>
+
+					<p>Data retains the shape of data rather than objects (data + accessors + mutators) and functions remain separate from data.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/paper-stack.jpg" data-background-opacity="0.2">
+					<h3>Immutability</h3>
+					
+					<p>Never change the data itself.  Create a new structure with new data.</p>
+					
+					<p>Benefits:</p>
+					<ol>
+						<li>Concurrency -- critical for Big Data solutions</li>
+						<li>Separates data and functionality</li>
+						<li>Idempotence makes reasoning and testing easier</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Expressions</h3>
+					
+					<p><strong>Functions</strong> take inputs, return outputs, and ideally do nothing else (that is, have no <strong>side effects</strong>).</p>
+
+					<p>This makes reading code much easier:  you can abstract away functional complexity and think at the grain of the problem.</p>
+
+					<p>The opposite:  an accessor ("get" property) which modifies data, or a Get procedure which updates tables.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/nesting-pots.jpg" data-background-opacity="0.2">
+					<h3>Functions are Higher-Order</h3>
+					
+					<p>Functions are values like integers or strings.  You can take a function as an input to a function and a function can return a function as an output.</p>
+					
+					<p>Functions are an abstraction for performing operations on data.  This approach leads to <strong>composition</strong>:  layering functions together rather than implementing parent and child objects through inheritance.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>An Analog:  the APPLY Operator</h3>
+					
+					<pre><code data-trim><script type="text/template">
+					SELECT
+						p.Key,
+						c.SumOfVals
+					FROM dbo.ParentTable p
+						OUTER APPLY dbo.GetTop5Vals(p.Key) c;
+					</script></code></pre>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>An Analog:  the APPLY Operator</h3>
+					
+					<pre><code data-line-numbers="|5-19|1-6,19"  data-trim><script type="text/template">
+					SELECT
+						p.ParentKey,
+						c.SumOfVals
+					FROM dbo.ParentTable p
+						OUTER APPLY
+						(
+							SELECT
+								SUM(ch.Val) AS SumOfVals
+							FROM
+							(
+								SELECT TOP(5)
+									chd.Val
+								FROM dbo.ChildTable chd
+								WHERE
+									chd.ParentKey = p.ParentKey
+								ORDER BY
+									chd.SomeDate DESC
+							) ch
+						) c;
+					</script></code></pre>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/arrow.jpg" data-background-opacity="0.2">
+					<h3>A Quick Example</h3>
+					
+					<p>Relevant functional programming concepts:</p>
+					
+					<pre><code data-line-numbers="|1|2|3|"  data-trim><script type="text/template">
+					def parseLine(line:String) { line.toString().split(",")(3); }
+					val rdd = lines.map(parseLine)
+					val rdd = lines.map(x => x.toString().split(",")(3))
+					</script></code></pre>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>What is Functional Programming?</li>
+						<li class="active">Why Go Functional?</li>
+						<li>Demos Galore</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/arrow.jpg" data-background-opacity="0.2">
+					<h3>Why Go Functional?</h3>
+					
+					<p>Reasons to learn about functional programming include:</p>
+					
+					<ol>
+						<li>Key data science and Big Data languages are functional.</li>
+						<li>Functional programming can earn you more money.</li>
+						<li>Database developers will have an easier time learning it than OO languages.</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/library.jpg" data-background-opacity="0.2">
+					<h3>Data Science and Big Data Languages</h3>
+					
+					<p>Reasons to learn about functional programming include:</p>
+					
+					<div class='container'>
+						<div class='col'>
+							<p>Data science:</p>
+							<ul>
+								<li>R</li>
+								<li>Julia (sort of)</li>
+							</ul>
+						</div>
+						<div class='col'>
+							<p>Big Data:</p>
+							<ul>
+								<li>Scala</li>
+							</ul>
+						</div>
+						<div class='col'>
+							<p>Key concepts:</p>
+							<ul>
+								<li>MapReduce</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Money</h3>
+					
+					<img src="presentation/assets/image/US_Average_Salaries_By_Tech.png" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/dictionary.jpg" data-background-opacity="0.2">
+					<h3>The Functional Mindset</h3>
+					
+					<p>Database developers have a leg up on thinking functionally:</p>
+					
+					<ol>
+						<li>We think in terms of sets and set operations.</li>
+						<li>We think in terms of data and operations on data.</li>
+						<li>We think in terms of declarative operations instead of imperative step-by-step operations.</li>
+						<li>Functional programming makes it easier to avoid the object-relational impedence mismatch problem.</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/businessdecision.jpg" data-background-opacity="0.2">
+					<h3>What if I'm a C# / Java Dev?</h3>
+					
+					<p>Functional programming still helps people who work in C# and Java all day.</p>
+					
+					<p>We have seen more and more functional programming concepts make their way into these languages, especially C#.  LINQ, lambda expressions, async and Task&lt;&gt;, Func&lt;&gt;, non-nullable object types, record types, and more have made their way into C# (at least as of C# 8).</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>What is Functional Programming?</li>
+						<li>Why Go Functional?</li>
+						<li class="active">Demos Galore</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/lego-town.jpg" data-background-opacity="0.2">
+					<h3>Demos Galore</h3>
+					
+					<p>We will now look at an F# console application filled with basic examples of what you can do with the language.</p>
+					
+					<p>This isn't always the best code and it's not a perfect guide for learning the language, but it gives you a feel for behavior and a few of the language benefits.</p>
+				</section>
+
+				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
+					<h3>Wrapping Up</h3>
+					
+					<p>Functional programming has its own mindset which can take time getting used to, especially if your background is as an object-oriented developer.  There are significant benefits to building up your FP skills, especially if you are interested in the Data Engineering space, where languages like Scala dominate.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Wrapping Up</h3>
+					
+					<p>
+						To learn more, go here:
+						<br />
+						<a href="https://csmore.info/on/fp">https://csmore.info/on/fp</a>
+					</p>
+					<br />
+					<p>
+						And for help, contact me:
+						<br />
+						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+					</p>
+					<br />
+					<p>
+						Catallaxy Services consulting:
+						<br />
+						<a href="https://csmore.info/contact">https://CSmore.info/on/contact</a>
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/dist/reveal.js"></script>
+		<script src="../reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="../reveal.js/plugin/notes/notes.js"></script>
+		<script src="../reveal.js/plugin/search/search.js"></script>
+		<script src="../reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="../reveal.js/plugin/math/math.js"></script>
+		<script src="../reveal.js/plugin/menu/menu.js"></script>
+		<script src="../reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="../reveal.js/plugin/chart/Chart.min.js"></script>
+		<script src="../reveal.js/plugin/chart/plugin.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				width: '70%',
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'fade',
+				
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath, RevealMenu, RevealChart ]
+			});
+		</script>
+	</body>
+</html>
