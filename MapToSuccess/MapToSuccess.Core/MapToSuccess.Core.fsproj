@@ -45,7 +45,7 @@
     <PackageReference Include="FSharp.Data" Version="3.3.3" />
     <PackageReference Include="FSharp.Data.SqlClient" Version="2.0.6" />
     <PackageReference Include="MathNet.Numerics.FSharp" Version="4.9.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="XPlot.Plotly" Version="3.0.1" />
   </ItemGroup>
 </Project>
