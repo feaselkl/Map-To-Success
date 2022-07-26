@@ -4,9 +4,11 @@ open FSharp.Data
 
 // NOTE:  change this string to match your server.
 // This assumes that you are running from a Docker container.
+// Linux versions of Docker don't like host.docker.internal as the name
+// so I am using the default bridge IP address.
 [<Literal>]
 let connectionString =
-    @"Data Source=host.docker.internal,51433;Initial Catalog=MapToSuccess;uid=sa;pwd=SomeBadP@ssword3"
+    @"Data Source=172.17.0.1,51433;Initial Catalog=MapToSuccess;uid=sa;pwd=SomeBadP@ssword3"
 
 // Simple SQL query
 type AirportSql = 
